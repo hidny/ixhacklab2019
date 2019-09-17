@@ -1,3 +1,6 @@
+
+Install:
+
 sudo apt-get update
 
 sudo apt-get install mysql-server
@@ -6,7 +9,16 @@ sudo apt install mysql-client-core-5.7
 
 sudo mysql_secure_installation utility
 
-sudo mysql -padmin
+-------------
+
+setup DB:
+
+sudo mysql -uroot -padmin
+
+#Avoid needing to use sudo:
+#From: https://stackoverflow.com/questions/37239970/connect-to-mysql-server-without-sudo
+CREATE USER 'black'@'localhost' IDENTIFIED BY 'hack';
+GRANT ALL PRIVILEGES ON ixhack.* TO 'black'@'localhost';
 
 create database ixhack;
 
@@ -33,6 +45,7 @@ renewable bit
 insert into scholarship (url, school, scholarship_name, scholarship_provider, value, value_description, criteria_notes) VALUES ('uwaterloo.ca/future-students/financing/scholarships', 'university of waterloo', 'Presidents Scholarship of Distinction', 'university of waterloo', 2000, '2000 Entrance Scholarship', 'Early May admission average of 95');
 
 
+Test select:
 
 mysql> select * from scholarship;
 +-----------------------------------------------------+------------------------+---------------------------------------+------------------------+-------+---------------------------+-----------------------------------+------------+----------+-----------------+----------------+------------------+-----------+
