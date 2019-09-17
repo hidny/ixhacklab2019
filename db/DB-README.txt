@@ -58,4 +58,43 @@ mysql> select * from scholarship;
 
 
 
+----
+
+REMOTE SQL:
+(using my virtual 10.5.29.7)
+
+Step 1:
+use VPN:
+https://confluence.indexexchange.com/display/IT1/Connecting+to+the+Corporate+VPN
+
+Step 2:
+Find ip address to use:
+
+mysql -u userFAKE -h 10.5.29.7 -ppassword -D ixhack
+mysql: [Warning] Using a password on the command line interface can be insecure.
+ERROR 1045 (28000): Access denied for user 'userFAKE'@'10.3.63.233' (using password: YES)
+
+Step 3:
+
+Ask Michael to add permissions for you
+Also:
+Please send me your public keys and I'll add it to the DB server's authorized_keys
+
+What Michael will do:
+
+Add your machine to authorized_keys:
+in the DB server (10.5.29.7)
+~/.ssh/authorized_keys
+
+In DB Server (10.5.29.7):
+Grant SQL permissions:
+CREATE USER 'user'@'<IP>' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON ixhack.* TO 'user'@'<IP>' IDENTIFIED BY 'password';
+
+CREATE USER 'user'@'10.3.63.233' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON ixhack.* TO 'user'@'10.3.63.233' IDENTIFIED BY 'password';
+
+mysql -u user -h 10.5.29.7 -ppassword -D ixhack
+
+
 
