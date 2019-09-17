@@ -78,7 +78,7 @@ Step 3:
 
 Ask Michael to add permissions for you
 Also:
-Please send me your public keys and I'll add it to the DB server's authorized_keys
+Please send Michael your public keys and I'll add it to the DB server's authorized_keys
 
 What Michael will do:
 
