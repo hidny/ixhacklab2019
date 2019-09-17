@@ -35,7 +35,16 @@ try:
         print("scholarship_name  = ", row[2])
         print
 
-    
+    #Sample insert: from https://pynative.com/python-mysql-insert-data-into-database-table/
+    # mySql_insert_query = """INSERT INTO Laptop (Id, Name, Price, Purchase_date) 
+    #                       VALUES 
+    #                       (1, 'Lenovo ThinkPad P71', 6459, '2019-08-14') """
+
+    #cursor = connection.cursor()
+    #result = cursor.execute(mySql_insert_query)
+    #connection.commit()
+    #print("Record inserted successfully into Laptop table")
+
 except mysql.connector.Error as error:
     print("Failed to create table in MySQL: {}".format(error))
 finally:
