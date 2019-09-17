@@ -60,8 +60,12 @@ mysql> select * from scholarship;
 
 ----
 
-REMOTE SQL:
+REMOTE SQL ACCESS:
 (using my virtual 10.5.29.7)
+
+Step 0:
+Install mysql client:
+sudo apt install mysql-client-core-5.7
 
 Step 1:
 use VPN:
@@ -70,15 +74,23 @@ https://confluence.indexexchange.com/display/IT1/Connecting+to+the+Corporate+VPN
 Step 2:
 Find ip address to use:
 
+Run command to get ip:
 mysql -u userFAKE -h 10.5.29.7 -ppassword -D ixhack
+
+Sample output:
 mysql: [Warning] Using a password on the command line interface can be insecure.
 ERROR 1045 (28000): Access denied for user 'userFAKE'@'10.3.63.233' (using password: YES)
 
+sample IP: 10.3.63.233
+
 Step 3:
 
-Ask Michael to add permissions for you
-Also:
 Please send Michael your public keys and I'll add it to the DB server's authorized_keys
+(It's the output of:
+cat ~/.ssh/id_rsa.pub
+)
+AND 
+Ask Michael to add permissions for you
 
 What Michael will do:
 
@@ -92,7 +104,7 @@ CREATE USER 'user'@'<IP>' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON ixhack.* TO 'user'@'<IP>' IDENTIFIED BY 'password';
 
 CREATE USER 'user'@'10.3.63.233' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON ixhack.* TO 'user'@'10.3.63.233' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON ixhack.* TO 'user'@'<IP>' IDENTIFIED BY 'password';
 
 mysql -u user -h 10.5.29.7 -ppassword -D ixhack
 
