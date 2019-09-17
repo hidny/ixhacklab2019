@@ -13,15 +13,7 @@ import MailIcon from '@material-ui/icons/Mail';
 
 let Filter = () => (
 	<div >
-      <AppBar position="fixed" >
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            Permanent drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <Drawer
-        
         variant="permanent"
         anchor="left"
       >
