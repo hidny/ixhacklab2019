@@ -109,3 +109,51 @@ mysql -u user -h 10.5.29.7 -ppassword -D ixhack
 
 
 
+----
+
+Flask stuff:
+
+pip3 install Flask
+
+
+from:
+https://github.com/admiralobvious/flask-mysqldb/issues/13
+-->
+sudo apt-get install libmysqlclient-dev
+
+pip3 install flask_mysqldb
+
+
+python3 flaskConnect.py
+
+ * Serving Flask app "flaskConnect" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+
+
+Create template file:  (index.html)
+https://www.techiediaries.com/flask-tutorial-templates/
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask Template Example</title>
+  </head>
+  <body>
+    <div>
+      <p>{{ message }}</p>
+    </div>
+  </body>
+</html>
+
+michael.tardibuono@ub-1799-mt:~/hack/db$ mkdir templates
+michael.tardibuono@ub-1799-mt:~/hack/db$ mv index.html templates/
+
+
+Test curl:
+
+curl -d 'fname=admin&lname=12' http://127.0.0.1:5000/
+

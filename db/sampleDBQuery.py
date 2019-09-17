@@ -6,11 +6,14 @@ import mysql.connector
 from mysql.connector import Error
 
 try:
-    connection = mysql.connector.connect(host='localhost',
+    #connection = mysql.connector.connect(host='localhost',
+    #                                     database='ixhack',
+    #                                     user='black',
+    #                                     password='hack')
+    connection = mysql.connector.connect(host='10.5.29.7',
                                          database='ixhack',
-                                         user='black',
-                                         password='hack')
-   
+                                         user='user',
+                                         password='password')
     if connection.is_connected():
         db_Info = connection.get_server_info()
         print("Connected to MySQL Server version ", db_Info)
