@@ -1,0 +1,23 @@
+sudo mysql -padmin
+
+create database ixhack;
+
+use ixhack;
+
+create table scholarship (
+url varchar(255)  NOT NULL,
+school varchar(100)  NOT NULL,
+scholarship_name varchar(100) NOT NULL,
+scholarship_provider varchar(100),
+value MEDIUMINT(8),
+value_description varchar(500),
+criteria_notes varchar(500),
+award_type varchar(100),
+deadline varchar(100),
+type_of_student varchar(100),
+level_of_study varchar(100),
+number_of_awards MEDIUMINT(8),
+renewable bit
+);
+
+select * from scholarship;
