@@ -47,7 +47,7 @@ def index():
 
 
 
-    print "Done sql command"
+    print("Done sql command")
     #mysql.connection.commit()
     cursor.close()
 
