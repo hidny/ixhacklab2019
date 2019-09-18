@@ -3,11 +3,12 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Zoom from '@material-ui/core/Zoom';
+import Typography from '@material-ui/core/Typography';
 
 let mockScholarships = [
 	{
-		title: "First",
-		desc: "Details",
+		title: "Title",
+		desc: "University Name",
 		value: 2000,
 	},
 	{
@@ -16,7 +17,7 @@ let mockScholarships = [
 		value: 2000,
 	},
 	{
-		title: "First",
+		title: "Title",
 		desc: "Description",
 		value: 2000,
 	},
@@ -224,9 +225,20 @@ class Results extends React.Component {
 					<Zoom in={true} onEntered={this.handleEnter(i)} timeout={100}>
 						<Paper>
 							<div>
-								{mockScholarships[i].title}: {mockScholarships[i].desc}
+								<Typography variant="h6">
+									{mockScholarships[i].title}
+								</Typography>
 							</div>
-							<div>${mockScholarships[i].value}</div>
+							<div>
+								<Typography variant="subtitle1">
+									{mockScholarships[i].desc}
+								</Typography>
+							</div>
+							<div>
+								<Typography variant="subtitle2">
+									${mockScholarships[i].value}
+								</Typography>
+							</div>
 						</Paper>
 					</Zoom>
 				</Grid>

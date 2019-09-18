@@ -8,19 +8,18 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button'
 
-let fundFilter = [
+let filterList = [
   "Title",
   "Description",
-  "Value",
 ];
 class Filter extends React.Component {
 	constructor(props){
@@ -46,6 +45,10 @@ class Filter extends React.Component {
     });
   }
 
+  handleOnRangeClick = () => {
+		this.setState({filterHelpOpen:false});
+  }	
+
 	handleDelete = (index) => (event) => {
     let newFilters = this.state.addedFilters.splice(0);
     newFilters.splice(index, 1);
@@ -59,7 +62,6 @@ class Filter extends React.Component {
 
     chipsArray.push(
       <Chip
-        icon={<FaceIcon />}
         label="Add Filter"
         onClick={this.handleClick}
       />
@@ -67,7 +69,7 @@ class Filter extends React.Component {
 		for (let i = 0; i < this.state.addedFilters.length; i++) {
 			chipsArray.push(
           <Chip
-            icon={<FaceIcon />}
+            //icon={<FaceIcon />}
             label={this.state.addedFilters[i]}
             onClick={this.handleClick}
             onDelete={this.handleDelete(i)}
@@ -90,7 +92,7 @@ class Filter extends React.Component {
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <List>
-                  {fundFilter.map((text, index) => (
+                  {filterList.map((text, index) => (
                     <ListItem
                       button
                       key={text}
@@ -100,6 +102,39 @@ class Filter extends React.Component {
                     </ListItem>
                   ))}
                 </List>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel>
+              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                Range
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Grid container spacing={2} alignItems="flex-end">
+                  <Grid item xs={3}>
+                    <TextField
+                      label="Minimum"
+                      //value={values.name}
+                      //onChange={handleChange('name')}
+                      margin="normal"
+                    />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <TextField
+                      label="Maximum"
+                      //value={values.name}
+                      //onChange={handleChange('name')}
+                      margin="normal"
+                    />
+                  </Grid>
+                  <Grid item xs={1}>
+                    <Button 
+                      variant="contained" 
+                      onClick={this.handleOnRangeClick}
+                    >
+                      Apply
+                    </Button>
+                  </Grid>
+                </Grid>
               </ExpansionPanelDetails>
             </ExpansionPanel>
         </Drawer>
