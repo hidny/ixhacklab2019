@@ -31,7 +31,12 @@ class Filter extends React.Component {
   }
 	handleClick = () => {
 		this.setState({filterHelpOpen:true});
-	}	
+  }	
+  
+  handleOnFilterClick = () => {
+    this.setState({filterHelpOpen: false});
+  }
+
 	handleDelete = () => {}
 	
   render() {
@@ -56,25 +61,25 @@ class Filter extends React.Component {
 						anchor="left"
 						open={this.state.filterHelpOpen}
 					>
-          <Divider />
-          <ExpansionPanel>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              Funds
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <List>
-                {["$1k", "$10k", "$100k"].map((text, index) => (
-                  <ListItem
-                    button
-                    key={text}
-                    onClick={this.handleOnFilterClick}
-                  >
-                    <ListItemText primary={text} />
-                  </ListItem>
-                ))}
-              </List>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
+            <Divider />
+            <ExpansionPanel>
+              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                Funds
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <List>
+                  {["$1k", "$10k", "$100k"].map((text, index) => (
+                    <ListItem
+                      button
+                      key={text}
+                      onClick={this.handleOnFilterClick}
+                    >
+                      <ListItemText primary={text} />
+                    </ListItem>
+                  ))}
+                </List>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
         </Drawer>
       </div>
     );
