@@ -207,9 +207,6 @@ class Results extends React.Component {
 		}
 	}
 
-	onReceiveScholarships = (data) => {
-		debugger;
-	}
 	componentDidMount() {
 		/*$.ajax({
 			url: "http://127.0.0.1:5000",
@@ -226,7 +223,7 @@ class Results extends React.Component {
 	}
 
 	hasSpace = (index) => {
-		return (this.state.currentDisplayCount <= this.state.itemDisplayLimit) 
+		return index == 0 || (this.state.currentDisplayCount <= this.state.itemDisplayLimit && this.state.dataFromDb[index-1].finishedAnimation) 
 	}
 
 	passes(scholarship) {
@@ -277,8 +274,8 @@ class Results extends React.Component {
 				this.state.currentDisplayCount++;
 				gridElements.push(
 					<Grid item xs={6}>
-						<Zoom in={true} onEntered={this.handleEnter(i)} timeout={100}>
 							<Link href={element.link}>
+						<Zoom in={true} onEntered={this.handleEnter(i)} >
 							<Card>
 								<CardContent>
 								<div>
@@ -298,8 +295,8 @@ class Results extends React.Component {
 								</div>
 									</CardContent>
 							</Card>
-								</Link>
 						</Zoom>
+								</Link>
 					</Grid>
 				);
 			}
