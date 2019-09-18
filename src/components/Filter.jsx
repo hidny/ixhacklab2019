@@ -12,6 +12,7 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Search from "@material-ui/icons/Search";
 import Chip from '@material-ui/core/Chip';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -60,22 +61,25 @@ class Filter extends React.Component {
   render() {
 		let chipsArray = [];
 
-    chipsArray.push(
-      <Chip
-        label="Add Filter"
-        onClick={this.handleClick}
-      />
-    );
 		for (let i = 0; i < this.state.addedFilters.length; i++) {
 			chipsArray.push(
           <Chip
             //icon={<FaceIcon />}
+						clickable
             label={this.state.addedFilters[i]}
             onClick={this.handleClick}
             onDelete={this.handleDelete(i)}
           />
 			);
 		}
+    chipsArray.push(
+      <Chip
+				color="primary"
+				icon={<Search/>}
+        label="Add Filter"
+        onClick={this.handleClick}
+      />
+    );
     return (
       <div>
         <div>
