@@ -9,6 +9,8 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import TextField from '@material-ui/core/TextField';
 
 
 function performSearch(event) {
@@ -30,7 +32,9 @@ class MainPage extends React.Component {
 	}
 	
 	handleSubmit(event) {
-		this.props.onSearch(this.state.value);
+		if (event.key === "Enter") {
+			this.props.onSearch(this.state.value);
+		}
 	}
 
 	render() {
@@ -53,19 +57,18 @@ class MainPage extends React.Component {
 							 doctrina
 						</Typography>
 					</Grid>
-					<Grid style={{textAlign:"center"}} item xs={12}>
-						<InputBase 
-						 placeholder="Search"
-						 onChange={this.handleChange}
-						 onKeyPress={(e) => {
-							 if (e.key === "Enter") {
-								 this.handleSubmit(event);
-							 }
-						 }}/>
-						<IconButton onClick={this.handleSubmit}>
-							<SearchIcon />
-						</IconButton>
-					</Grid>
+						<Grid
+							container 
+							justify="center"
+							spacing={1} >
+      	    <Grid item>
+							<TextField 
+								label="find scholarships" 
+								onKeyPress={this.handleSubmit}
+						 		onChange={this.handleChange}
+							/>
+      	    </Grid>
+      	  </Grid>
 				</Grid>
 			</Container>
 		);
