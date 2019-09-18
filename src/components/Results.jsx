@@ -246,7 +246,21 @@ class Results extends React.Component {
 					.toLowerCase()
 					.includes(f.Title.toLowerCase());
 			}
+			if (f.Field) {
+				result = result && scholarship
+					.field_of_study
+					.toLowerCase()
+					.includes(f.Field.toLowerCase());
+			}
+			if (f.Amount) {
+				let parseableVersion = scholarship.amount.replace(/[\$\,]/g,"")
+				result = result && !isNaN(parseableVersion);
+				if (result){ 
+					result = result && Number(parseableVersion) >= Number(f.Amount); 
+				}
+			}
 		}
+		
 		return result;
 	}
 

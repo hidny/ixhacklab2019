@@ -20,7 +20,7 @@ import Button from '@material-ui/core/Button'
 
 let filterList = [
   "Title",
-  "Field of Study",
+  "Field",
   "Amount",
 ];
 class Filter extends React.Component {
