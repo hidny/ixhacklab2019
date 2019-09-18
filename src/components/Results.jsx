@@ -321,7 +321,7 @@ class Results extends React.Component {
 			}
 		}
 		return (
-			<Container maxWidth="sm" onScroll={this.handleOnScroll}>
+			<Container style={{maxHeight:"300px"}} maxWidth="sm" onScroll={this.handleOnScroll}>
 				<Grid container spacing={3}>
 					{gridElements}
 				</Grid>
