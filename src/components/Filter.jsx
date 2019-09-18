@@ -79,35 +79,9 @@ class Filter extends React.Component {
         label="Add Filter"
         onClick={this.handleClick}
       />
-    );
-    return (
-      <div>
-        <div>
-					{chipsArray}
-        </div>
-					<Drawer 
-						anchor="left"
-						open={this.state.filterHelpOpen}
-					>
-            <Divider />
-            <ExpansionPanel>
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                Filters
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <List>
-                  {filterList.map((text, index) => (
-                    <ListItem
-                      button
-                      key={text}
-                      onClick={this.handleOnFilterClick(text)}
-                    >
-                      <ListItemText primary={text} />
-                    </ListItem>
-                  ))}
-                </List>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+		);
+
+		let rangeSection = (
             <ExpansionPanel>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 Range
@@ -139,6 +113,35 @@ class Filter extends React.Component {
                     </Button>
                   </Grid>
                 </Grid>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+		);
+    return (
+      <div>
+        <div>
+					{chipsArray}
+        </div>
+					<Drawer 
+						anchor="left"
+						open={this.state.filterHelpOpen}
+					>
+            <Divider />
+            <ExpansionPanel>
+              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                Filters
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <List>
+                  {filterList.map((text, index) => (
+                    <ListItem
+                      button
+                      key={text}
+                      onClick={this.handleOnFilterClick(text)}
+                    >
+                      <ListItemText primary={text} />
+                    </ListItem>
+                  ))}
+                </List>
               </ExpansionPanelDetails>
             </ExpansionPanel>
         </Drawer>
