@@ -13,14 +13,32 @@ mysql = MySQL(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    
+    details = request.form
+    #firstName = details['fname']
+    #lastName = details['lname']
+    cursor = mysql.connection.cursor()
+
+    mySql_select_query = "select * from scholarship;"
+    result = cursor.execute(mySql_select_query)
+
+    print("Scholarship Table created successfully ")
+
+    records = cursor.fetchall()
+    print("Total number of rows in scholarship is: ", cursor.rowcount)
+
+    print("\nPrinting each record")
+    for row in records:
+       print("url = ", row[0], )
+       print("school = ", row[1])
+       print("scholarship_name  = ", row[2])
+       print
+
+    print "Done sql command"
+    mysql.connection.commit()
+    cursor.close()
+
     if request.method == "POST":
-        details = request.form
-        firstName = details['fname']
-        lastName = details['lname']
-        cur = mysql.connection.cursor()
-        cur.execute("insert into scholarship (link, school, award_name, scholarship_provider, amount, value_description, criteria_notes) VALUES ('uwaterloo.ca/future-students/financing/scholarships', 'university of waterloo', 'Presidents Scholarship of Distinction', 'university of waterloo', 2000, '2000 Entrance Scholarship', 'TESTTESTTEST');")
-        mysql.connection.commit()
-        cur.close()
         return 'success'
     return render_template('index.html')
 
