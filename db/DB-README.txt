@@ -19,7 +19,7 @@ sudo mysql -uroot -padmin
 #From: https://stackoverflow.com/questions/37239970/connect-to-mysql-server-without-sudo
 CREATE USER 'black'@'localhost' IDENTIFIED BY 'hack';
 GRANT ALL PRIVILEGES ON ixhack.* TO 'black'@'localhost';
-
+s
 create database ixhack;
 
 use ixhack;
@@ -125,7 +125,8 @@ sudo apt-get install libmysqlclient-dev
 pip3 install flask_mysqldb
 
 
-python3 flaskConnect.py
+#python version 2
+python flaskConnect.py
 
  * Serving Flask app "flaskConnect" (lazy loading)
  * Environment: production
