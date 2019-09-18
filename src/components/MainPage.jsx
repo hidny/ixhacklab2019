@@ -9,7 +9,7 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuBook from '@material-ui/icons/MenuBook';
 import TextField from '@material-ui/core/TextField';
 
 
@@ -57,18 +57,18 @@ class MainPage extends React.Component {
 							 doctrina
 						</Typography>
 					</Grid>
-						<Grid
-							container 
-							justify="center"
-							spacing={1} >
-      	    <Grid item>
-							<TextField 
-								label="find scholarships" 
+				<Grid justify="center" container spacing={1} alignItems="flex-end">
+          <Grid item>
+            <MenuBook />
+          </Grid>
+          <Grid item>
+						<TextField 
+								label="find scholarships"
 								onKeyPress={this.handleSubmit}
 						 		onChange={this.handleChange}
 							/>
-      	    </Grid>
-      	  </Grid>
+          </Grid>
+        </Grid>
 				</Grid>
 			</Container>
 		);
