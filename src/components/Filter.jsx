@@ -22,7 +22,7 @@ class Filter extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			chips: [1,2],
+			chips: [1],
 			filterHelpOpen: false
 		};
 	}
@@ -49,7 +49,6 @@ class Filter extends React.Component {
 		}
     return (
       <div>
-        <div>Add Filter</div>
         <div>
 					{chipsArray}
         </div>
