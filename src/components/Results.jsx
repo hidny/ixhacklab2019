@@ -192,7 +192,10 @@ class Results extends React.Component {
 
 	constructor(props) {
 		super(props)
-		this.state = {}
+		this.state = {
+			itemDisplayLimit: 5,
+			currentDisplayCount: 0
+		}
 	}
 
 	handleEnter = (index) => (event) => {
@@ -201,7 +204,7 @@ class Results extends React.Component {
 	}
 
 	hasSpace = (index) => {
-		return (index == 0 || mockScholarships[index-1].finishedAnimation)
+		return (this.state.currentDisplayCount <= this.state.itemDisplayLimit) && (index == 0 || mockScholarships[index-1].finishedAnimation)
 	}
 
 	passes(scholarship) {
@@ -219,7 +222,9 @@ class Results extends React.Component {
 
 	render(){
 		let gridElements = [];
+		this.state.currentDisplayCount = 0
 		for (let i = 0; i < mockScholarships.length && this.hasSpace(i); i++) {
+			this.state.currentDisplayCount++;
 			gridElements.push(
 				<Grid item xs={3}>
 					<Zoom in={true} onEntered={this.handleEnter(i)} timeout={100}>
