@@ -57,9 +57,10 @@ class Filter extends React.Component {
 		this.setState({filterHelpOpen:false});
   }	
 
-	handleDelete = (index) => (event) => {
+	handleDelete = (index, name) => (event) => {
     let newFilters = this.state.addedFilters.splice(0);
     newFilters.splice(index, 1);
+		this.props.onDeleteFilter(name);
     this.setState({
       addedFilters: newFilters,
     });
@@ -75,7 +76,7 @@ class Filter extends React.Component {
 						clickable
             label={this.state.addedFilters[i]}
             onClick={this.handleClick}
-            onDelete={this.handleDelete(i)}
+            onDelete={this.handleDelete(i, this.state.addedFilters[i])}
           />
 			);
 		}

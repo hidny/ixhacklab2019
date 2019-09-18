@@ -30,12 +30,17 @@ class Home extends React.Component {
 		this.state.filters[text] = value;
 		this.setState(this.state);
 	}
+	handlerOnDeleteFilter = (name) => {
+		delete this.state.filters[name];
+		this.setState(this.state);
+
+	}
 
 	render() {
 		let searchQueryReadySection  = [];
 
 		if (this.state.searchQuery) {
-			searchQueryReadySection.push(<Filter handleOnFilterClick={this.handleOnFilterClick}/>);
+			searchQueryReadySection.push(<Filter onDeleteFilter={this.handlerOnDeleteFilter}  handleOnFilterClick={this.handleOnFilterClick}/>);
 			searchQueryReadySection.push(<Results filters={this.state.filters}  query={this.state.searchQuery}/>);
 		}
 	  return(
