@@ -1,0 +1,15 @@
+
+Copy over mysql data:
+
+
+mysql --user=root --password='' --column-names=TRUE ixhack -e "SELECT * from scholarship;" > /tmp/output.txt
+
+From local:
+scp root@10.5.29.7:/tmp/output.txt /tmp/output.txt
+
+//https://dev.mysql.com/doc/refman/8.0/en/load-data.html
+
+LOAD DATA LOCAL INFILE '/tmp/output.txt' INTO TABLE ixhack.scholarship
+  FIELDS TERMINATED BY '\t' IGNORE 1 LINES;
+
+//The renewable column is messed up afterwards, but it doesn't matter!
