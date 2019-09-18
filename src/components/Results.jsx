@@ -10,23 +10,23 @@ let mockScholarships = [
 		value: 2000,
 	},
 	{
-		title: "First",
+		title: "Second",
 		desc: "Details",
 		value: 2000,
 	},
 	{
 		title: "First",
-		desc: "Details",
+		desc: "Description",
 		value: 2000,
 	},
 	{
-		title: "First",
-		desc: "Details",
+		title: "Third",
+		desc: "Value",
 		value: 2000,
 	},
 	{
-		title: "First",
-		desc: "Details",
+		title: "Title",
+		desc: "Money",
 		value: 2000,
 	},
 	{
@@ -67,10 +67,24 @@ let mockScholarships = [
 ]
 
 class Results extends React.Component {
+	passes(scholarship) {
+		let result = false;
+		result = scholarship
+				.title
+				.toLowerCase()
+				.includes(this.props.query.toLowerCase()) || 
+				scholarship
+				.desc
+				.toLowerCase()
+				.includes(this.props.query.toLowerCase());
+		return result;
+	}
+
 	render(){
 		let gridElements = [];
 		for (let i = 0; i < mockScholarships.length; i++) {
-			gridElements.push(
+			if (this.passes(mockScholarships[i])) {
+				gridElements.push(
 					<Grid item xs={3}>
 						<Paper>
 							<div>
@@ -79,7 +93,8 @@ class Results extends React.Component {
 							<div>${mockScholarships[i].value}</div>
 						</Paper>
 					</Grid>
-			);
+				);
+			}
 		}
 		return (
 			<Container maxWidth="sm">

@@ -30,7 +30,7 @@ class Home extends React.Component {
 
 		if (this.state.searchQuery) {
 			searchQueryReadySection.push(<Filter/>);
-			searchQueryReadySection.push(<Results/>);
+			searchQueryReadySection.push(<Results query={this.state.searchQuery}/>);
 		}
 	  return(
 			<Container maxWidth="sm">
