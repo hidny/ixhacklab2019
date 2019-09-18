@@ -1,20 +1,25 @@
 from flask import Flask, render_template, request
-from flask_mysqldb import MySQL
+# from flask_mysqldb import MySQL
+from flask_cors import CORS
 from flask import jsonify
 from flask import Response
+import pymysql.cursors
 
 import json
 
 app = Flask(__name__)
-
+CORS(app)
 
 app.config['MYSQL_HOST'] = '10.5.29.7'
 app.config['MYSQL_DB'] = 'ixhack'
 app.config['MYSQL_USER'] = 'user'
 app.config['MYSQL_PASSWORD'] = 'password'
 
-mysql = MySQL(app)
-
+mysql = pymysql.connect(host='172.17.0.2',
+                             user='root',
+                             password='password123',
+                             db='ixhack',
+                             cursorclass=pymysql.cursors.DictCursor)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -22,7 +27,7 @@ def index():
     details = request.form
     #firstName = details['fname']
     #lastName = details['lname']
-    cursor = mysql.connection.cursor()
+    cursor = mysql.cursor()
 
     mySql_select_query = "select * from scholarship;"
     result = cursor.execute(mySql_select_query)
