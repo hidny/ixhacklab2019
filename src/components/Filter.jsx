@@ -17,12 +17,16 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 
-
+let fundFilter = [
+  "Title",
+  "Description",
+  "Value",
+];
 class Filter extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			chips: [1],
+			addedFilters: [],
 			filterHelpOpen: false
 		};
 	}
@@ -33,22 +37,40 @@ class Filter extends React.Component {
 		this.setState({filterHelpOpen:true});
   }	
   
-  handleOnFilterClick = () => {
-    this.setState({filterHelpOpen: false});
+  handleOnFilterClick = (text) => (event) => {
+    let newFilters = this.state.addedFilters.splice(0);
+    newFilters.push(text);
+    this.setState({
+      filterHelpOpen: false,
+      addedFilters: newFilters,
+    });
   }
 
-	handleDelete = () => {}
+	handleDelete = (index) => (event) => {
+    let newFilters = this.state.addedFilters.splice(0);
+    newFilters.splice(index, 1);
+    this.setState({
+      addedFilters: newFilters,
+    });
+  }
 	
   render() {
 		let chipsArray = [];
 
-		for (let i = 0; i < this.state.chips.length; i++) {
+    chipsArray.push(
+      <Chip
+        icon={<FaceIcon />}
+        label="Add Filter"
+        onClick={this.handleClick}
+      />
+    );
+		for (let i = 0; i < this.state.addedFilters.length; i++) {
 			chipsArray.push(
           <Chip
             icon={<FaceIcon />}
-            label="Add Filter"
+            label={this.state.addedFilters[i]}
             onClick={this.handleClick}
-            onDelete={this.handleDelete}
+            onDelete={this.handleDelete(i)}
           />
 			);
 		}
@@ -64,15 +86,15 @@ class Filter extends React.Component {
             <Divider />
             <ExpansionPanel>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                Funds
+                Filters
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <List>
-                  {["$1k", "$10k", "$100k"].map((text, index) => (
+                  {fundFilter.map((text, index) => (
                     <ListItem
                       button
                       key={text}
-                      onClick={this.handleOnFilterClick}
+                      onClick={this.handleOnFilterClick(text)}
                     >
                       <ListItemText primary={text} />
                     </ListItem>
