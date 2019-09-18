@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Zoom from '@material-ui/core/Zoom';
 import Typography from '@material-ui/core/Typography';
+import * as $ from 'jquery';
 
 let mockScholarships = [
 	{
@@ -196,6 +197,16 @@ class Results extends React.Component {
 			itemDisplayLimit: 5,
 			currentDisplayCount: 0
 		}
+	}
+
+	onReceiveScholarships = (data) => {
+		debugger;
+	}
+	componentDidMount() {
+		$.ajax({
+			url: "http://127.0.0.1:5000",
+			success: this.onReceiveScholarships
+		});
 	}
 
 	handleEnter = (index) => (event) => {
