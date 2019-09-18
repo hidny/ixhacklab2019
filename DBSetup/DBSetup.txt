@@ -71,6 +71,15 @@ cd db
 
 #use python 2 (not version 3)
 Run:
-python sampleDBQuery.py
+python flaskConnect.py
+
+
+Test it with curl:
+#Open a new terminal:
+curl -d 'fname=admin&lname=12' http://127.0.0.1:5000/
+
+//Or:
+//Open html with firefox:
+http://127.0.0.1:5000/
 
 
