@@ -15,10 +15,18 @@ def getSoup(link):
     return soup
 
 # Open database connection
-db = pymysql.connect('10.5.29.7', 'ixhack', 'user', 'password')
+db = pymysql.connect('10.5.29.7', 'user', 'password', 'ixhack')
 
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
+
+# Remove all entries from the table
+try:
+    cursor.execute("DELETE FROM scholarship")
+    db.commit()
+except:
+    db.rollback()
+print("deleted everything")
 
 # Parse html into scholarship info
 j = 0
@@ -35,13 +43,15 @@ for i in range(1, 156):
         total += 1
         link = award.find('a')['href']
         awardSoup = getSoup(link)
-
         sidebar = awardSoup.find('div',attrs={'class': 'box'})
         sidebarContent = sidebar.find_all('p')
-        if(deadLine != "Closed"):
-            provider = sidebarContent[0].text.strip()
-            value = sidebarContent[1].text.strip()
-            deadLine = sidebarContent[3].text.strip()
+        applyNow = sidebarContent[-2]
+        link = applyNow.find('a')
+        if link:
+            link = link['href']
+            provider = sidebarContent[-5].text.strip()
+            value = sidebarContent[-4].text.strip()
+            deadLine = sidebarContent[-2].text.strip()[:-9]
             title = awardSoup.find('h1', attrs={'class': 'entry-title'}).text.strip()
             print("title: {}".format(title))
             print("link: {}".format(link))
@@ -55,11 +65,8 @@ for i in range(1, 156):
             # Prepare SQL query to INSERT a record into the database.
             sql = "INSERT INTO scholarship \
                 (link, school, award_name, amount, deadline, field_of_study) \
-                VALUES ('%s', '%s', '%s', '%d', '%s', '%s')" % \
+                VALUES ('%s', '%s', '%s', '%s', '%s', '%s')" % \
                 (link, provider, title, value, deadLine, field)
-            #    VALUES ('%s', '%s', '%s', '%s', '%d', \
-            #        '%s', '%s', '%s', '%s', '%s', '%s', \
-            #            '%d', '%d', '%s' )" % \
             try:
                 # Execute the SQL command
                 cursor.execute(sql)
