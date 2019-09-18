@@ -1,6 +1,15 @@
 import React from 'react';
 import { InputBase, IconButton } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+
 
 function performSearch(event) {
 	if (event.key == "Enter") {
@@ -26,20 +35,39 @@ class MainPage extends React.Component {
 
 	render() {
 		return(
-			<div>
-				<h1>Scholarships</h1>
-				<InputBase 
-				 placeholder="Search"
-				 onChange={this.handleChange}
-				 onKeyPress={(e) => {
-					 if (e.key === "Enter") {
-						 this.handleSubmit(event);
-					 }
-				 }}/>
-				<IconButton onClick={this.handleSubmit}>
-					<SearchIcon />
-				</IconButton>
-			</div>
+			<Container>
+				<Grid 
+					container
+					justify="center"
+				>
+					<Grid item xs={1}>
+						<CardMedia
+							component="img"
+							image="src/grad-cap.svg"
+						/>
+					</Grid>
+				</Grid>
+				<Grid	container >
+					<Grid style={{textAlign:"center"}} item xs={12}>
+						<Typography variant="h2" gutterBottom>
+							 doctrina
+						</Typography>
+					</Grid>
+					<Grid style={{textAlign:"center"}} item xs={12}>
+						<InputBase 
+						 placeholder="Search"
+						 onChange={this.handleChange}
+						 onKeyPress={(e) => {
+							 if (e.key === "Enter") {
+								 this.handleSubmit(event);
+							 }
+						 }}/>
+						<IconButton onClick={this.handleSubmit}>
+							<SearchIcon />
+						</IconButton>
+					</Grid>
+				</Grid>
+			</Container>
 		);
 	}
 }

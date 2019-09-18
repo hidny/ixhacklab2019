@@ -22,14 +22,18 @@ class Filter extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			chips: [1,2]
+			chips: [1,2],
+			filterHelpOpen: false
 		};
 	}
 	filterResults = (filter, value) =>  {
     return () => alert(filter + "=" + value);
   }
-	handleClick = () => {}	
+	handleClick = () => {
+		this.setState({filterHelpOpen:true});
+	}	
 	handleDelete = () => {}
+	
   render() {
 		let chipsArray = [];
 
@@ -49,7 +53,10 @@ class Filter extends React.Component {
         <div>
 					{chipsArray}
         </div>
-        <Drawer variant="permanent" anchor="left">
+					<Drawer 
+						anchor="left"
+						open={this.state.filterHelpOpen}
+					>
           <Divider />
           <ExpansionPanel>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -61,7 +68,7 @@ class Filter extends React.Component {
                   <ListItem
                     button
                     key={text}
-                    onClick={this.filterResults("funds", text)}
+                    onClick={this.handleOnFilterClick}
                   >
                     <ListItemText primary={text} />
                   </ListItem>
