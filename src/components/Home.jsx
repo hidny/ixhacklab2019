@@ -16,11 +16,11 @@ class Home extends React.Component {
 
 	render() {
 	  return(
-	  		<Container maxWidth="sm">
-	  			<MainPage/>
-	  			<Filter/>
-	  			<Results/>
-	  		</Container>
+			<Container maxWidth="sm">
+				<MainPage/>
+				<Filter/>
+				<Results/>
+			</Container>
 	  )
 	};
 }
