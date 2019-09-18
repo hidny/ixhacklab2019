@@ -25,12 +25,18 @@ class Home extends React.Component {
 			searchQuery: value
 		})
 	}
+	handleOnFilterClick = (text, value) => {
+		this.state.filters = this.state.filters || {};
+		this.state.filters[text] = value;
+		this.setState(this.state);
+	}
+
 	render() {
 		let searchQueryReadySection  = [];
 
 		if (this.state.searchQuery) {
-			searchQueryReadySection.push(<Filter/>);
-			searchQueryReadySection.push(<Results query={this.state.searchQuery}/>);
+			searchQueryReadySection.push(<Filter handleOnFilterClick={this.handleOnFilterClick}/>);
+			searchQueryReadySection.push(<Results filters={this.state.filters}  query={this.state.searchQuery}/>);
 		}
 	  return(
 			<Container maxWidth="sm">

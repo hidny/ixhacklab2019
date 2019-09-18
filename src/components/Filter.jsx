@@ -20,7 +20,8 @@ import Button from '@material-ui/core/Button'
 
 let filterList = [
   "Title",
-  "Description",
+  "Field of Study",
+  "Amount",
 ];
 class Filter extends React.Component {
 	constructor(props){
@@ -40,7 +41,13 @@ class Filter extends React.Component {
   handleOnFilterClick = (text) => (event) => {
     let newFilters = this.state.addedFilters.splice(0);
     newFilters.push(text);
-    this.setState({
+		let filterValue = prompt("Please enter a value for " + text);
+		this.state.filters = this.state.filters || {};
+		this.state.filters[text] = filterValue;
+
+		this.props.handleOnFilterClick(text, filterValue);
+		this.setState({
+			filters: this.state.filters,
       filterHelpOpen: false,
       addedFilters: newFilters,
     });
