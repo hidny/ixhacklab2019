@@ -201,9 +201,9 @@ class Results extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			itemDisplayLimit: 5,
 			currentDisplayCount: 0,
 			dataFromDb: [],
+			itemDisplayLimit: 5,
 		}
 	}
 
@@ -212,6 +212,8 @@ class Results extends React.Component {
 			url: "http://127.0.0.1:5000",
 			success: this.onReceiveScholarships
 		});*/
+
+		document.children[0].children[1].onscroll =	this.handleOnScroll.bind(this); 
 		this.setState({
 			dataFromDb: dataFromDb
 		})
@@ -265,6 +267,23 @@ class Results extends React.Component {
 		return result;
 	}
 
+	handleOnScroll = (event) => {
+		function getScrollPercent() {
+			var h = document.documentElement,
+				b = document.body,
+				st = 'scrollTop',
+				sh = 'scrollHeight';
+			return (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+		}
+		if (getScrollPercent() > 90 && !this.state.scrollTimeoutDisabled) {
+			this.state.scrollTimeoutDisabled = true;
+			let newLimit = this.state.itemDisplayLimit += 5;
+			console.log("updating scroll limit to",newLimit,"because percent was", getScrollPercent());
+			setTimeout(function disableTimeout(){this.setState({scrollTimeoutDisabled: false})}.bind(this),1000)
+			this.setState({itemDisplayLimit: newLimit});
+		}
+	}
+
 	render(){
 		let gridElements = [];
 		this.state.currentDisplayCount = 0
@@ -302,7 +321,7 @@ class Results extends React.Component {
 			}
 		}
 		return (
-			<Container maxWidth="sm">
+			<Container maxWidth="sm" onScroll={this.handleOnScroll}>
 				<Grid container spacing={3}>
 					{gridElements}
 				</Grid>
