@@ -102,6 +102,7 @@ Grant SQL permissions:
 CREATE USER 'user'@'<IP>' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON ixhack.* TO 'user'@'<IP>' IDENTIFIED BY 'password';
 
+ex:
 CREATE USER 'user'@'10.3.63.233' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON ixhack.* TO 'user'@'<IP>' IDENTIFIED BY 'password';
 
